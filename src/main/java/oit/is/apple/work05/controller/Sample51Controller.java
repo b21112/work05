@@ -47,4 +47,15 @@ public class Sample51Controller {
     model.addAttribute("fruits", fruits);
     return "sample51.html";
   }
+
+  @GetMapping("step4")
+  @Transactional
+  public String sample54(@RequestParam Integer id, ModelMap model) {
+    Fruit fruit4 = fruitMapper.selectById(id);
+    model.addAttribute("fruit4", fruit4);
+
+    ArrayList<Fruit> fruits = fruitMapper.selectAllFruits();
+    model.addAttribute("fruits", fruits);
+    return "sample51.html";
+  }
 }
