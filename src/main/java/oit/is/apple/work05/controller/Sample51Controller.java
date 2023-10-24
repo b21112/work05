@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -58,4 +59,20 @@ public class Sample51Controller {
     model.addAttribute("fruits", fruits);
     return "sample51.html";
   }
+
+  @PostMapping("step5")
+  @Transactional
+  public String sample55(@RequestParam Integer id, @RequestParam String name, @RequestParam Integer price,
+      ModelMap model) {
+
+    Fruit fruit = new Fruit(id, name, price);
+    // update
+    fruitMapper.updateFruitById(fruit);
+    // フルーツリストを取得
+    ArrayList<Fruit> fruits = fruitMapper.selectAllFruits();
+    model.addAttribute("fruits", fruits);
+
+    return "sample51.html";
+  }
+
 }
